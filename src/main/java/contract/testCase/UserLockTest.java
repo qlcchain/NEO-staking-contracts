@@ -37,8 +37,6 @@ public class UserLockTest {
 
     ScriptHash contractScripthash = new ScriptHash("84be590a68903cdc37c6afe62e9056c70cc22f0e");
     
-    String ownerWif = "";
-	
     /**
      * 
      * @Description Normal lock/use the same original HASH
@@ -50,7 +48,7 @@ public class UserLockTest {
     public void userLock12() {
 		
         try {
-			Account account = Account.fromWIF(ownerWif).build();
+			Account account = Account.fromWIF("WIF").build();
 			
 			List<ContractParameter> parameterList = new ArrayList<ContractParameter>();
 			ContractParameter parameter = ContractParameter.byteArray("e08b14031a7021de3d92a3ba49c5c91bbb7252ed5b2f510f0f5524e528733d15");
@@ -102,7 +100,7 @@ public class UserLockTest {
     public void userLock3() {
 		
         try {
-			Account account = Account.fromWIF(ownerWif).build();
+			Account account = Account.fromWIF("WIF").build();
 			
 			List<ContractParameter> parameterList = new ArrayList<ContractParameter>();
 			ContractParameter parameter = ContractParameter.byteArray("132b4c1d3b76670d681aab1d44628a9309133a04882f8608c4081e112ecc49ce");
@@ -154,7 +152,7 @@ public class UserLockTest {
     public void userLock4() {
 		
         try {
-			Account account = Account.fromWIF(ownerWif).build();
+			Account account = Account.fromWIF("WIF").build();
 			
 			List<ContractParameter> parameterList = new ArrayList<ContractParameter>();
 			ContractParameter parameter = ContractParameter.byteArray("ddd56bc449f8d6c323d96b269bd09e6f890ed5daad687ca4cbb53993d8d8191a");
@@ -206,7 +204,7 @@ public class UserLockTest {
     public void userLock5() {
 		
         try {
-			Account account = Account.fromWIF(ownerWif).build();
+			Account account = Account.fromWIF("WIF").build();
 			
 			List<ContractParameter> parameterList = new ArrayList<ContractParameter>();
 			ContractParameter parameter = ContractParameter.byteArray("51c940c6b5be9cf44e6855b4a2594e428d848755e62f5a770802ed01dd9ca50f");
@@ -258,7 +256,7 @@ public class UserLockTest {
     public void userLock6() {
 		
         try {
-			Account account = Account.fromWIF(ownerWif).build();
+			Account account = Account.fromWIF("WIF").build();
 			
 			List<ContractParameter> parameterList = new ArrayList<ContractParameter>();
 			ContractParameter parameter = ContractParameter.byteArray("51c940c6b5be9cf44e6855b4a2594e428d848755e62f5a770802ed01dd9ca50f");

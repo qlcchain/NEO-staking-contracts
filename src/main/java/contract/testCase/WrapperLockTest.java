@@ -39,8 +39,6 @@ public class WrapperLockTest {
 
     ScriptHash contractScripthash = new ScriptHash("84be590a68903cdc37c6afe62e9056c70cc22f0e");
     
-    String ownerWif = "";
-    
     /**
      * 
      * @Description Normal lock/use the same original HASH
@@ -53,7 +51,7 @@ public class WrapperLockTest {
 	@Test
     public void wrapperLock12() throws IOException, ErrorResponseException {
 		
-        Account account = Account.fromWIF("L2BAaQsPTDxGu1D9Q3x9ZS2ipabyzjBCNJAdP3D3NwZzL6KUqEkg").build();
+        Account account = Account.fromWIF("WIF").build();
         
         List<ContractParameter> parameterList = new ArrayList<ContractParameter>();
         ContractParameter parameter = ContractParameter.byteArray("ede5d91c4db8d66238f3fa2cabe33dc6cf1bc11af8f32ecb3b58d2799a2274e6");
@@ -103,7 +101,7 @@ public class WrapperLockTest {
 	@Test
     public void wrapperLock3() throws IOException, ErrorResponseException {
 		
-        Account account = Account.fromWIF("L2BAaQsPTDxGu1D9Q3x9ZS2ipabyzjBCNJAdP3D3NwZzL6KUqEkg").build();
+        Account account = Account.fromWIF("WIF").build();
         
         List<ContractParameter> parameterList = new ArrayList<ContractParameter>();
         ContractParameter parameter = ContractParameter.byteArray("38827049dc76600768d3182681bd1056a98a33f61e3bb5205b81ef9263ffd2e5");
@@ -153,7 +151,7 @@ public class WrapperLockTest {
 	@Test
     public void wrapperLock4() throws IOException, ErrorResponseException {
 		
-        Account account = Account.fromWIF("L2BAaQsPTDxGu1D9Q3x9ZS2ipabyzjBCNJAdP3D3NwZzL6KUqEkg").build();
+        Account account = Account.fromWIF("WIF").build();
         
         List<ContractParameter> parameterList = new ArrayList<ContractParameter>();
         ContractParameter parameter = ContractParameter.byteArray("38827049dc76600768d3182681bd1056a98a33f61e3bb5205b81ef9263ffd2e5");
@@ -201,7 +199,7 @@ public class WrapperLockTest {
 	@Test
     public void wrapperLock5() throws IOException, ErrorResponseException {
 		
-        Account account = Account.fromWIF("L2BAaQsPTDxGu1D9Q3x9ZS2ipabyzjBCNJAdP3D3NwZzL6KUqEkg").build();
+        Account account = Account.fromWIF("WIF").build();
         
         List<ContractParameter> parameterList = new ArrayList<ContractParameter>();
         ContractParameter parameter = ContractParameter.byteArray("38827049dc76600768d3182681bd1056a98a33f61e3bb5205b81ef9263ffd2e5");
