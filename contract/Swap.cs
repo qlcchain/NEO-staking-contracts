@@ -8,6 +8,7 @@ using System.Numerics;
 
 namespace QlcSwap {
 
+
     // struct for swap info
     public class SwapInfo {
         public string originText;
