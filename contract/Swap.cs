@@ -46,27 +46,27 @@ namespace QlcSwap {
 
         // user lock event
         [DisplayName("userLockEvent")]
-        public static event Action<byte[], BigInteger> UserLockEvent;
+        private static event Action<byte[], BigInteger> UserLockEvent;
 
         // wrapper unlock event
         [DisplayName("wrapperUnlockEvent")]
-        public static event Action<byte[], BigInteger> WrapperUnlockEvent;
+        private static event Action<byte[], BigInteger> WrapperUnlockEvent;
         
         // refund user event
         [DisplayName("refundUserEvent")]
-        public static event Action<byte[], BigInteger> RefundUserEvent;
+        private static event Action<byte[], BigInteger> RefundUserEvent;
         
         // wrapper lock event
         [DisplayName("wrapperLockEvent")]
-        public static event Action<byte[], BigInteger> WrapperLockEvent;
+        private static event Action<byte[], BigInteger> WrapperLockEvent;
         
         // user unlock event
         [DisplayName("userUnlockEvent")]
-        public static event Action<byte[], BigInteger> UserUnlockEvent;
+        private static event Action<byte[], BigInteger> UserUnlockEvent;
         
         // refund wrapper event
         [DisplayName("refundWrapperEvent")]
-        public static event Action<byte[], BigInteger> RefundWrapperEvent;
+        private static event Action<byte[], BigInteger> RefundWrapperEvent;
 
         public static object Main(string operation, object[] args) {
             if (Runtime.Trigger == TriggerType.Verification) {
@@ -127,9 +127,13 @@ namespace QlcSwap {
                         if (args.Length != 1)
                             return "code:0, msg:The refundWrapper method need one parameter.";
                         return RefundWrapper((byte[])args[0], executingScriptHash);
+                    case "deleteSwapInfo":
+                        if (args.Length != 1)
+                            return "code:0, msg:The deleteSwapInfo method need one parameter.";
+                        return DeleteSwapInfo((byte[])args[0]);
                     case "transferOwner":
                         if (args.Length != 1)
-                            return "code:0, msg:The TransferOwner method need one parameter.";
+                            return "code:0, msg:The transferOwner method need one parameter.";
                         return TransferOwner((byte[])args[0]);
                 }
                 
@@ -139,7 +143,7 @@ namespace QlcSwap {
 
         // user lock
         [DisplayName("userLock")]
-        public static object UserLock(byte[] keyHash, byte[] from, byte[] to, BigInteger amount, byte[] wrapperInAddress, BigInteger overtimeBlocks) {
+        private static object UserLock(byte[] keyHash, byte[] from, byte[] to, BigInteger amount, byte[] wrapperInAddress, BigInteger overtimeBlocks) {
             // params length check
             if (keyHash.Length<=0 || from.Length!=20 || wrapperInAddress.Length!=20) {
                 return "code:0, msg:The parameters error";
@@ -196,7 +200,7 @@ namespace QlcSwap {
 
         // wrapper unlock
         [DisplayName("wrapperUnlock")]
-        public static object WrapperUnlock(string key, byte[] from, byte[] userEthAddress) {
+        private static object WrapperUnlock(string key, byte[] from, byte[] userEthAddress) {
             // params length check
             if (key.Length <= 0) {
                 return "code:0, msg:The parameters error.";
@@ -246,7 +250,7 @@ namespace QlcSwap {
 
         // refund user
         [DisplayName("refundUser")]
-        public static object RefundUser(string key, byte[] from) {
+        private static object RefundUser(string key, byte[] from) {
             // params length
             if (key.Length <= 0) {
                 return "code:0, msg:The parameters error.";
@@ -295,7 +299,7 @@ namespace QlcSwap {
         
         // wrapper lock
         [DisplayName("wrapperLock")]
-        public static object WrapperLock(byte[] keyHash, byte[] from, byte[] to, BigInteger amount, byte[] userEthAddress, BigInteger overtimeBlocks) {
+        private static object WrapperLock(byte[] keyHash, byte[] from, byte[] to, BigInteger amount, byte[] userEthAddress, BigInteger overtimeBlocks) {
             // params length check
             if (keyHash.Length<=0 || from.Length!=20) {
                 return "code:0, msg:The parameters error";
@@ -306,11 +310,6 @@ namespace QlcSwap {
             var result = SWAP_MAP.Get(keyHash);
             if (result.Length != 0) {
                 return "code:0, msg:The keyHash already exists.";
-            }
-
-            // amount check
-            if (amount < MinSwapAmount) {
-                return "code:0, msg:The Minimum swap amout is too little";
             }
 
             // check overtime blocks
@@ -351,7 +350,7 @@ namespace QlcSwap {
         
         // user unlock
         [DisplayName("userUnlock")]
-        public static object UserUnlock(string key, byte[] from, byte[] to) {
+        private static object UserUnlock(string key, byte[] from, byte[] to) {
             // params length check
             if (key.Length<=0 || to.Length!=20) {
                 return "code:0, msg:The parameters error.";
@@ -400,7 +399,7 @@ namespace QlcSwap {
 
         // refund wrapper
         [DisplayName("refundWrapper")]
-        public static object RefundWrapper(byte[] keyHash, byte[] from) {
+        private static object RefundWrapper(byte[] keyHash, byte[] from) {
             // params length check
             if (keyHash.Length <= 0) {
                 return "code:0, msg:The parameters error.";
@@ -447,7 +446,7 @@ namespace QlcSwap {
         
         // initialization parameters, only once
         [DisplayName("init")]
-        public static bool Init() {
+        private static bool Init() {
             byte[] owner = Storage.Get(Storage.CurrentContext, "Owner");
             if (owner.Length != 0) return false;
             Storage.Put(Storage.CurrentContext, "Owner", InitOwner);
@@ -456,13 +455,33 @@ namespace QlcSwap {
 
         // transfer Owner
         [DisplayName("transferOwner")]
-        public static object TransferOwner(byte[] newOwner) {
+        private static object TransferOwner(byte[] newOwner) {
             // new owner address
             if (newOwner.Length != 20) {
                 return "code:0, msg:The new Owner error.";
             }
             Storage.Put(Storage.CurrentContext, "Owner", newOwner);
             return "code:1, msg:transfer success.";
+
+        }
+
+        // delete swap info
+        [DisplayName("deleteSwapInfo")]
+        private static object DeleteSwapInfo(byte[] keyHash) {
+            // get swap info
+            StorageMap SWAP_MAP = Storage.CurrentContext.CreateMap(nameof(SWAP_MAP));
+            var result = SWAP_MAP.Get(keyHash);
+            if (result.Length == 0) {
+                return "code:0, msg:The swap info not found.";
+            }
+            SwapInfo swapInfo = Helper.Deserialize(result) as SwapInfo;
+
+            // state check
+            if (swapInfo.state==1 || swapInfo.state==4) {
+                return "code:0, msg:Not completed swap info.";
+            }
+            SWAP_MAP.Delete(keyHash);
+            return true;
 
         }
 
@@ -474,6 +493,6 @@ namespace QlcSwap {
         //主网合约地址： 0d821bd7b6d53f5c2b40e217c6defc8bbe896cf5
         //测试网合约地址： b9d7ea3062e6aeeb3e8ad9548220c4ba1361d263
         [Appcall("b9d7ea3062e6aeeb3e8ad9548220c4ba1361d263")]
-        public static extern bool QlcMain(string operation, params object[] args);
+        private static extern bool QlcMain(string operation, params object[] args);
     }
 }
