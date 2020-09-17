@@ -8,7 +8,6 @@ using System.Numerics;
 
 namespace QlcSwap {
 
-
     // struct for swap info
     public class SwapInfo {
         public string originText;
@@ -31,19 +30,16 @@ namespace QlcSwap {
     public class Swap : SmartContract {
 
         // Note: This parameter needs to be modified when publishing the main network
-        private static readonly byte[] InitOwner = Helper.ToScriptHash("ANFnCg69c8VfE36hBhLZRrmofZ9CZU1vqZ");
+        private static readonly byte[] InitOwner = Helper.ToScriptHash("AJRhyPTBAmGYqbuWTKebPw4C47RNJZ529b");
     
 		// Minimum number of exchanges
-        // Note: This parameter needs to be modified when publishing the main network
-        private static readonly BigInteger MinSwapAmount = 1 * 100000000;
+        private static readonly BigInteger MinSwapAmount = 10000000000000;
         
         // NEP5 to ERC20 overtime min blocks
-        // Note: This parameter needs to be modified when publishing the main network
-        private static readonly BigInteger NEP5ToERC20OvertimeBlocks = 40;
+        private static readonly BigInteger NEP5ToERC20OvertimeBlocks = 11520;
 
         // ERC20 to NEP5 overtime min blocks
-        // Note: This parameter needs to be modified when publishing the main network
-        private static readonly BigInteger ERC20ToNEP5OvertimeBlocks = 20;
+        private static readonly BigInteger ERC20ToNEP5OvertimeBlocks = 5760;
 
         // user lock event
         [DisplayName("userLockEvent")]
@@ -493,7 +489,7 @@ namespace QlcSwap {
         
         //主网合约地址： 0d821bd7b6d53f5c2b40e217c6defc8bbe896cf5
         //测试网合约地址： b9d7ea3062e6aeeb3e8ad9548220c4ba1361d263
-        [Appcall("b9d7ea3062e6aeeb3e8ad9548220c4ba1361d263")]
+        [Appcall("0d821bd7b6d53f5c2b40e217c6defc8bbe896cf5")]
         private static extern bool QlcMain(string operation, params object[] args);
     }
 }
