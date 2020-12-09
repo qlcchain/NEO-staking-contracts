@@ -53,7 +53,7 @@ public class UserUnlockTest {
 
         try {
 
-            Account account = Account.fromWIF("KyiLMuwnkwjNyuQJMmKvmFENCvC4rXAs9BdRSz9HTDmDFt93LRHt").build();
+            Account account = Account.fromWIF("your wif").build();
             account.updateAssetBalances(neow3j);
 
             //attributes - to & contract address
@@ -111,7 +111,7 @@ public class UserUnlockTest {
 
         try {
 
-            Account account = Account.fromWIF("KyiLMuwnkwjNyuQJMmKvmFENCvC4rXAs9BdRSz9HTDmDFt93LRHt").build();
+            Account account = Account.fromWIF("your wif").build();
             account.updateAssetBalances(neow3j);
 
             //attributes - to & contract address
@@ -169,7 +169,7 @@ public class UserUnlockTest {
 
         try {
 
-            Account account = Account.fromWIF("KyiLMuwnkwjNyuQJMmKvmFENCvC4rXAs9BdRSz9HTDmDFt93LRHt").build();
+            Account account = Account.fromWIF("your wif").build();
             account.updateAssetBalances(neow3j);
 
             //attributes - to & contract address
@@ -227,7 +227,7 @@ public class UserUnlockTest {
 
         try {
 
-            Account account = Account.fromWIF("KyiLMuwnkwjNyuQJMmKvmFENCvC4rXAs9BdRSz9HTDmDFt93LRHt").build();
+            Account account = Account.fromWIF("your wif").build();
             account.updateAssetBalances(neow3j);
 
             //attributes - to & contract address
@@ -275,7 +275,7 @@ public class UserUnlockTest {
 	
 	public static void main(String[] args) {
 
-        Account account = Account.fromWIF("KyiLMuwnkwjNyuQJMmKvmFENCvC4rXAs9BdRSz9HTDmDFt93LRHt").build();
+        Account account = Account.fromWIF("your wif").build();
 		System.out.println(account.getAddress());
 	}
 	

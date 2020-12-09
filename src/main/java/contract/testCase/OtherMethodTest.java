@@ -40,7 +40,7 @@ public class OtherMethodTest {
 	
     ScriptHash contractScripthash = new ScriptHash("0xfcad9c0b5cde026781f162da68fde930da6da77b");
     
-    String ownerWif = "Kxu2HyQFcAsGn8DXLBkySYRfK6VDkqMznbuWNHWUncQATXYBeDtL";
+    String ownerWif = "your wif";
 	
 	@Test
     public void transferOwner() throws Exception {

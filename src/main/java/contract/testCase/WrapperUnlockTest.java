@@ -44,7 +44,7 @@ public class WrapperUnlockTest {
 
     ScriptHash contractScripthash = new ScriptHash("66c47fdd454bcfdd7cfe1643e26e7b9dd7ec8df8");
     
-    String ownerWif = "KwzBhL26S1c7zRevgSJRYeh26kXWMnJ5CSTLHvpR31nARRKHVZ8h";
+    String ownerWif = "your wif";
 	
     /**
      * 

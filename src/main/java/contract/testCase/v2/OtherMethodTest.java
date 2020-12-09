@@ -39,7 +39,7 @@ public class OtherMethodTest {
 	
     ScriptHash contractScripthash = new ScriptHash("bfcbb52d61bc6d3ef2c8cf43f595f4bf5cac66c5");
     
-    String ownerWif = "Kxu2HyQFcAsGn8DXLBkySYRfK6VDkqMznbuWNHWUncQATXYBeDtL";
+    String ownerWif = "your wif";
 	
 	@Test
     public void querySwapInfo() throws IOException, ErrorResponseException {

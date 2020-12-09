@@ -40,7 +40,7 @@ public class UnlockTest {
 	
     ScriptHash contractScripthash = new ScriptHash("bfcbb52d61bc6d3ef2c8cf43f595f4bf5cac66c5");
     
-    String ownerWif = "KwzBhL26S1c7zRevgSJRYeh26kXWMnJ5CSTLHvpR31nARRKHVZ8h";
+    String ownerWif = "your wif";
     
     /**
      * 
@@ -227,7 +227,7 @@ public class UnlockTest {
     
 	public static void main(String[] args) {
 
-       Account account = Account.fromWIF("Kxu2HyQFcAsGn8DXLBkySYRfK6VDkqMznbuWNHWUncQATXYBeDtL").build();
+       Account account = Account.fromWIF("your wif").build();
 		System.out.println(account.getAddress());
 	}
 	

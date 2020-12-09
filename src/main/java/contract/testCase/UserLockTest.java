@@ -48,7 +48,7 @@ public class UserLockTest {
     public void userLock12() {
 		
         try {
-			Account account = Account.fromWIF("KyiLMuwnkwjNyuQJMmKvmFENCvC4rXAs9BdRSz9HTDmDFt93LRHt").build();
+			Account account = Account.fromWIF("your wif").build();
 			
 			List<ContractParameter> parameterList = new ArrayList<ContractParameter>();
 			ContractParameter parameter = ContractParameter.byteArray("514ed2cae954aa3333caaecc514ebfe7a1ea808b79d68aa7f9fd1d255387f282");
