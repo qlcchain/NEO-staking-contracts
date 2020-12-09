@@ -157,6 +157,13 @@ namespace QlcSwap
             {
                 return "code:0, msg:The parameters error";
             }
+
+            // amount check
+            if (amount <= MinSwapAmount)
+            {
+                return "code:0, msg:The number of transfers cannot be less than 0";
+            }
+			
             // Whether ethTxid already exists
             StorageMap SWAP_MAP = Storage.CurrentContext.CreateMap(nameof(SWAP_MAP));
             var result = SWAP_MAP.Get(ethTxid);
