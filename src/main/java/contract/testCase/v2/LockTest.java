@@ -17,6 +17,7 @@ import com.alibaba.fastjson.JSONObject;
 
 import io.neow3j.contract.ContractInvocation;
 import io.neow3j.contract.ContractInvocation.Builder;
+import io.neow3j.crypto.Base58;
 import io.neow3j.contract.ContractParameter;
 import io.neow3j.contract.ScriptHash;
 import io.neow3j.model.types.StackItemType;
@@ -73,7 +74,6 @@ public class LockTest {
 			.build()
 			.sign()
 			.invoke();
-JSONObject json = new JSONObject();
 			System.out.println(contractInvocation.getResponse().getResult());
 			System.out.println(contractInvocation.getTransaction().getTxId());
 			List<StackItem> sItems = contractInvocation.testInvoke().getStack();
@@ -259,4 +259,15 @@ JSONObject json = new JSONObject();
        }
 	}
 	
+	public static void main(String[] args) {
+		String address = "AJ5huRnZJj3DZSxnJuZhAMLW1wfc8oMztj";
+		byte[] addressByte = Base58.decode(address);
+		for (byte b : addressByte)
+			System.out.print(b + " ");
+		System.out.println();
+        byte[] buffer = new byte[20];
+        System.arraycopy(addressByte, 1, buffer, 0, 20);
+		for (byte b : buffer)
+			System.out.print(b + " ");
+	}
 }

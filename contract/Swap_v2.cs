@@ -26,8 +26,9 @@ namespace QlcSwap
     {
 
         // Note: This parameter needs to be modified when publishing the main network
-		// ANFnCg69c8VfE36hBhLZRrmofZ9CZU1vqZ
-        private static readonly byte[] InitOwner = Helper.ToScriptHash("Ae4cUYCNrWMXHsK4msSYH61FKs7U8YvRKs");
+		// testnet:ANFnCg69c8VfE36hBhLZRrmofZ9CZU1vqZ
+		// mainnet:AJRhyPTBAmGYqbuWTKebPw4C47RNJZ529b
+        private static readonly byte[] InitOwner = Helper.ToScriptHash("AJRhyPTBAmGYqbuWTKebPw4C47RNJZ529b");
 
         // Minimum number of exchanges
         private static readonly BigInteger MinSwapAmount = 0;
@@ -225,6 +226,8 @@ namespace QlcSwap
             {
                 return "code:0, msg:The new Owner error.";
             }
+			// 验证地址合法性
+			// 合约内部暂时只能对长度进行验证，可以分两步走，第一步先set，判断没问题后再change
             Storage.Put(Storage.CurrentContext, "Owner", newOwner);
             return "code:1, msg:transfer success.";
 
@@ -238,7 +241,7 @@ namespace QlcSwap
 
         // mainnet qlc hash： 0d821bd7b6d53f5c2b40e217c6defc8bbe896cf5
         // testnet qlc hash： b9d7ea3062e6aeeb3e8ad9548220c4ba1361d263
-        [Appcall("b9d7ea3062e6aeeb3e8ad9548220c4ba1361d263")]
+        [Appcall("0d821bd7b6d53f5c2b40e217c6defc8bbe896cf5")]
         private static extern bool QlcMain(string operation, params object[] args);
     }
 }
